@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Installing...
+  build:
+    commands:
+      - echo Deploying CloudFormation Stack...
+      - aws cloudformation deploy \
+          --template-file s3.yaml \
+          --stack-name pipeline-cft \
+          --capabilities CAPABILITY_NAMED_IAM \
+          --region us-east-1
