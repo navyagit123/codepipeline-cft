@@ -10,7 +10,8 @@ phases:
   build:
     commands:
       - echo Deploying CloudFormation Stack...
-      - aws cloudformation deploy \
+      - |
+        aws cloudformation deploy \
           --template-file s3.yaml \
           --stack-name my-s3-stack \
           --capabilities CAPABILITY_IAM \
