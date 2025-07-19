@@ -5,10 +5,10 @@ Resources:
     Properties:
       BucketName: !Sub '${AWS::StackName}-dev-bucket'
 
-
-    BucketPolicy:
-    Type: 'AWS::S3::BucketPolicy'
+  MyBucketPolicy:
+    Type: AWS::S3::BucketPolicy
     Properties:
+      Bucket: !Ref MyBucket
       PolicyDocument:
         Id: MyPolicy
         Version: 2012-10-17
@@ -16,11 +16,9 @@ Resources:
           - Sid: PublicReadForGetBucketObjects
             Effect: Allow
             Principal: '*'
-            Action: '*'
+            Action: s3:GetObject
             Resource: !Join 
               - ''
               - - 'arn:aws:s3:::'
                 - !Ref MyBucket
-                - /*
-      Bucket: !Ref MyBucket
-  
+                - '/*'
